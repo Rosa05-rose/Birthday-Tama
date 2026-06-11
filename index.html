@@ -19,6 +19,10 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
+html{
+scroll-behavior:smooth;
+}
+
 body{
 background:linear-gradient(
 180deg,
@@ -26,81 +30,8 @@ background:linear-gradient(
 #BFEFFF,
 #EAF9FF
 );
-overflow:hidden;
+overflow-x:hidden;
 color:#333;
-}
-
-.page{
-display:none;
-height:100vh;
-justify-content:center;
-align-items:center;
-padding:30px;
-}
-
-.active{
-display:flex;
-}
-
-.card{
-background:white;
-width:90%;
-max-width:1000px;
-padding:40px;
-border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.15);
-text-align:center;
-}
-
-h1{
-font-size:3rem;
-color:#2563EB;
-margin-bottom:20px;
-}
-
-h2{
-color:#60A5FA;
-margin-bottom:20px;
-}
-
-p{
-line-height:1.8;
-font-size:18px;
-margin-bottom:15px;
-}
-
-img{
-width:100%;
-max-width:550px;
-border-radius:20px;
-margin:25px auto;
-display:block;
-box-shadow:0 10px 25px rgba(0,0,0,.15);
-}
-
-button{
-padding:12px 25px;
-border:none;
-border-radius:12px;
-background:#60A5FA;
-color:white;
-font-size:16px;
-cursor:pointer;
-}
-
-.loading-bar{
-width:100%;
-height:25px;
-background:#dbeafe;
-border-radius:30px;
-overflow:hidden;
-margin-top:20px;
-}
-
-.loading{
-height:100%;
-width:0%;
-background:#3B82F6;
 }
 
 .cloud{
@@ -117,28 +48,194 @@ animation-duration:55s;
 }
 
 @keyframes cloudMove{
+
 from{
 transform:translateX(-300px);
 }
+
 to{
 transform:translateX(1800px);
 }
+
+}
+
+.chapter{
+
+display:none;
+
+width:100%;
+min-height:100vh;
+
+padding:50px 20px;
+
+}
+
+.chapter.active{
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+}
+
+.card{
+
+background:white;
+
+width:90%;
+max-width:1000px;
+
+padding:40px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+text-align:center;
+
+}
+
+h1{
+
+font-size:3rem;
+color:#2563EB;
+
+margin-bottom:20px;
+
+}
+
+h2{
+
+color:#60A5FA;
+
+margin-bottom:20px;
+
+}
+
+p{
+
+line-height:1.8;
+
+font-size:18px;
+
+margin-bottom:15px;
+
+}
+
+img{
+
+width:100%;
+max-width:550px;
+
+border-radius:20px;
+
+margin:25px auto;
+
+display:block;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+button{
+
+padding:12px 25px;
+
+border:none;
+
+border-radius:12px;
+
+background:#60A5FA;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:scale(1.05);
+
+}
+
+.loading-bar{
+
+width:100%;
+
+height:25px;
+
+background:#dbeafe;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:20px;
+
+}
+
+.loading{
+
+height:100%;
+
+width:0%;
+
+background:#3B82F6;
+
 }
 
 .popup{
+
 position:fixed;
+
 top:20px;
+
 right:-400px;
+
 background:white;
+
 padding:15px 20px;
+
 border-radius:15px;
+
 box-shadow:0 10px 20px rgba(0,0,0,.15);
+
 transition:.5s;
+
 z-index:999;
+
 }
 
 .popup.show{
+
 right:20px;
+
+}
+
+.fade{
+
+animation:fadeIn 1s ease;
+
+}
+
+@keyframes fadeIn{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
 }
 
 </style>
@@ -158,9 +255,9 @@ right:20px;
 🏆 Achievement Unlocked!
 </div>
 
-<!-- LOADING PAGE -->
+<!-- LOADING -->
 
-<div class="page active" id="page1">
+<section class="chapter active" id="loadingChapter">
 
 <div class="card">
 
@@ -171,7 +268,9 @@ right:20px;
 <p>Loading Memories...</p>
 
 <div class="loading-bar">
+
 <div class="loading" id="loading"></div>
+
 </div>
 
 <p id="percent">0%</p>
@@ -179,23 +278,28 @@ right:20px;
 <br>
 
 <button id="musicBtn" style="display:none;">
+
 🎵 Play Music
+
 </button>
 
 <br><br>
 
 <button id="startBtn" style="display:none;">
+
 ▶️ Start Story
+
 </button>
 
 </div>
-</div>
-  
-<!-- FOREST -->
 
-<div class="page" id="page2">
+</section>
 
-<div class="card">
+<!-- CHAPTER 1 -->
+
+<section class="chapter" id="forestChapter">
+
+<div class="card fade">
 
 <h1>🌲 Chapter 1</h1>
 
@@ -220,19 +324,18 @@ aku selalu teringat bagaimana semuanya dimulai.
 
 <br>
 
-<button onclick="goDiscord()">
+<button onclick="openDiscord()">
+
 Continue ➜
+
 </button>
 
 </div>
+  <!-- CHAPTER 2 -->
 
-</div>
+<section class="chapter" id="discordChapter">
 
-<!-- DISCORD -->
-
-<div class="page" id="page3">
-
-<div class="card">
+<div class="card fade">
 
 <h1>🎧 Chapter 2</h1>
 
@@ -255,19 +358,21 @@ game bukan lagi satu-satunya alasan untuk berbicara.
 
 <br>
 
-<button onclick="goCall()">
+<button onclick="openCall()">
+
 Continue ➜
+
 </button>
 
 </div>
 
-</div>
+</section>
 
 <!-- INCOMING CALL -->
 
-<div class="page" id="page4">
+<section class="chapter" id="callChapter">
 
-<div class="card">
+<div class="card fade">
 
 <h1>📞 Incoming Call</h1>
 
@@ -290,12 +395,15 @@ Pratama Calling...
 <br>
 
 <p>
+
 Incoming Discord Call...
+
 </p>
 
 <br>
 
 <button class="answer"
+
 onclick="answerCall()">
 
 🟢 Answer
@@ -303,6 +411,7 @@ onclick="answerCall()">
 </button>
 
 <button class="decline"
+
 onclick="ignoreCall()">
 
 🔴 Ignore
@@ -311,38 +420,103 @@ onclick="ignoreCall()">
 
 </div>
 
-</div>
-  <!-- MABAR ARC -->
+</section>
 
-<div class="page" id="page5">
+<style>
 
-<div class="card">
+.caller{
+
+font-size:32px;
+
+font-weight:700;
+
+color:#2563EB;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{opacity:1;}
+50%{opacity:.5;}
+100%{opacity:1;}
+
+}
+
+.ring{
+
+font-size:100px;
+
+animation:ring .8s infinite;
+
+}
+
+@keyframes ring{
+
+0%{transform:rotate(-15deg);}
+25%{transform:rotate(15deg);}
+50%{transform:rotate(-15deg);}
+75%{transform:rotate(15deg);}
+100%{transform:rotate(0deg);}
+
+}
+
+.answer{
+
+background:#22c55e;
+
+}
+
+.decline{
+
+background:#ef4444;
+
+}
+
+</style>
+  <!-- CHAPTER 3 -->
+
+<section class="chapter" id="mabarChapter">
+
+<div class="card fade">
 
 <h1>🎮 Chapter 3</h1>
 
 <h2>Mabar Arc</h2>
 
 <p>
-Ternyata cerita ini tidak berhenti di satu map.
+Ada banyak map yang kita jelajahi.
+Ada banyak momen random yang akhirnya jadi kenangan.
 </p>
 
-<img id="mapImage" src="map1.jpeg">
+<div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
+
+<button onclick="prevMap()">
+⬅️
+</button>
+
+<img id="mapImage"
+src="map1.jpeg"
+style="max-width:400px;">
+
+<button onclick="nextMap()">
+➡️
+</button>
+
+</div>
+
+<p id="mapCounter">
+
+Map Memory 1 / 6
+
+</p>
 
 <br>
 
-<button onclick="prevMap()">
-⬅️ Previous
-</button>
-
-<button onclick="nextMap()">
-Next ➡️
-</button>
-
-<br><br>
-
 <button id="mapContinue"
 style="display:none;"
-onclick="goRealLife()">
+onclick="openRealLife()">
 
 Continue ➜
 
@@ -350,39 +524,55 @@ Continue ➜
 
 </div>
 
-</div>
+</section>
 
-<!-- REAL LIFE -->
+<!-- CHAPTER 4 -->
 
-<div class="page" id="page6">
+<section class="chapter" id="realLifeChapter">
 
-<div class="card">
+<div class="card fade">
 
 <h1>🚶 Chapter 4</h1>
 
 <h2>Real Life Update</h2>
 
 <p>
-⚠️ MAJOR STORY EVENT
+⚠️ Major Story Event
 </p>
 
-<img id="realImage" src="ketemu1.jpeg">
+<p>
+Dan akhirnya...
+cerita yang awalnya hanya ada di layar,
+mulai hadir di dunia nyata.
+</p>
+
+<div style="display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;">
+
+<button onclick="prevReal()">
+⬅️
+</button>
+
+<img id="realImage"
+src="ketemu1.jpeg"
+style="max-width:400px;">
+
+<button onclick="nextReal()">
+➡️
+</button>
+
+</div>
+
+<p id="realCounter">
+
+Real Life Memory 1 / 7
+
+</p>
 
 <br>
 
-<button onclick="prevReal()">
-⬅️ Previous
-</button>
-
-<button onclick="nextReal()">
-Next ➡️
-</button>
-
-<br><br>
-
 <button id="realContinue"
 style="display:none;"
-onclick="goWhatsapp()">
+onclick="openWhatsapp()">
 
 Continue ➜
 
@@ -390,13 +580,12 @@ Continue ➜
 
 </div>
 
-</div>
+</section>
+  <!-- CHAPTER 5 -->
 
-<!-- WHATSAPP -->
+<section class="chapter" id="whatsappChapter">
 
-<div class="page" id="page7">
-
-<div class="card">
+<div class="card fade">
 
 <h1>📱 Chapter 5</h1>
 
@@ -419,7 +608,7 @@ yang ternyata membawa banyak cerita berikutnya.
 
 <br>
 
-<button onclick="goBirthday()">
+<button onclick="openBirthday()">
 
 Continue ➜
 
@@ -427,25 +616,30 @@ Continue ➜
 
 </div>
 
-</div>
-  <!-- BIRTHDAY -->
+</section>
 
-<div class="page" id="page8">
+<!-- CHAPTER 6 -->
 
-<div class="card">
+<section class="chapter" id="birthdayChapter">
 
-<h1>🎂 Chapter 6</h1>
+<div class="card fade">
+
+<h1>🏆 Achievement Unlocked</h1>
 
 <h2>Birthday Event</h2>
 
-<div id="cake">
+<div id="cake"
+style="
+font-size:120px;
+animation:candleMove 1s infinite alternate;
+">
 
 🎂
 
 </div>
 
 <p>
-Selamat ulang tahun, Pratama 🎉
+🎉 Happy Birthday Pratama 🎉
 </p>
 
 <p>
@@ -453,7 +647,9 @@ Hari ini levelmu bertambah satu.
 </p>
 
 <h1>
+
 +1 AGE ✨
+
 </h1>
 
 <br>
@@ -466,43 +662,58 @@ Open Letter 💌
 
 </div>
 
-</div>
+</section>
 
 <!-- LETTER -->
 
-<div class="page" id="page9">
+<section class="chapter" id="letterChapter">
 
-<div class="card">
+<div class="card fade">
 
 <h1>💌 Final Letter</h1>
 
 <h2>Click The Envelope</h2>
 
-<div id="envelope"
-onclick="showLetter()"
-style="font-size:120px;cursor:pointer;">
+<div
+id="envelope"
+onclick="openEnvelope()"
+style="
+font-size:120px;
+cursor:pointer;
+">
 
 💌
 
 </div>
 
-<div id="hearts"
-style="display:none;font-size:40px;">
+<div
+id="hearts"
+style="
+display:none;
+font-size:50px;
+margin:20px;
+">
 
 💖 💖 💖
 
 </div>
 
-<div id="letterContent"
-style="display:none;">
+<div
+id="paper"
+style="
+display:none;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+margin-top:20px;
+">
 
-<br>
-
-<h2>For Pratama</h2>
+<h2>For Pratama 💙</h2>
 
 <p>
 
-[TULIS SURATMU DI SINI]
+ISI SURAT KAMU NANTI DI SINI
 
 </p>
 
@@ -518,19 +729,19 @@ Continue ➜
 
 </div>
 
-</div>
+</section>
 
 <!-- ENDING -->
 
-<div class="page" id="page10">
+<section class="chapter" id="endingChapter">
 
-<div class="card">
+<div class="card fade">
 
 <h1>🏆 STORY COMPLETED</h1>
 
-<h2>100% Completion Rate</h2>
+<h2>Completion Rate 100%</h2>
 
-<div style="font-size:80px;">
+<div style="font-size:90px;">
 
 🎊 🎉 🎊
 
@@ -541,6 +752,8 @@ Continue ➜
 From Forest...
 
 To Discord...
+
+To Mabar...
 
 To Real Life...
 
@@ -564,7 +777,23 @@ Thank You For Being Part Of This Story 💙
 
 </div>
 
-</div>
+</section>
+
+<style>
+
+@keyframes candleMove{
+
+from{
+transform:rotate(-3deg);
+}
+
+to{
+transform:rotate(3deg);
+}
+
+}
+
+</style>
 
 <script>
 
@@ -597,33 +826,42 @@ document.getElementById("startBtn").style.display =
 
 },40);
 
-document.getElementById("musicBtn")
+document
+.getElementById("musicBtn")
 .addEventListener("click",()=>{
-
-document.getElementById("bgmusic").play();
-
-});
-
-document.getElementById("startBtn")
-.addEventListener("click",()=>{
-
-showPage(2);
-
-});
-
-function showPage(num){
 
 document
-.querySelectorAll(".page")
-.forEach(p=>{
-
-p.classList.remove("active");
+.getElementById("bgmusic")
+.play();
 
 });
 
 document
-.getElementById("page"+num)
+.getElementById("startBtn")
+.addEventListener("click",()=>{
+
+showChapter("forestChapter");
+
+});
+
+function showChapter(id){
+
+document
+.querySelectorAll(".chapter")
+.forEach(ch=>{
+
+ch.classList.remove("active");
+
+});
+
+document
+.getElementById(id)
 .classList.add("active");
+
+window.scrollTo({
+top:0,
+behavior:"smooth"
+});
 
 }
 
@@ -644,19 +882,19 @@ popup.classList.remove("show");
 
 }
 
-function goDiscord(){
+function openDiscord(){
 
 achievement("🏆 First Encounter");
 
-showPage(3);
+showChapter("discordChapter");
 
 }
 
-function goCall(){
+function openCall(){
 
 achievement("🎧 Discord Era");
 
-showPage(4);
+showChapter("callChapter");
 
 }
 
@@ -664,7 +902,7 @@ function answerCall(){
 
 achievement("📞 Call Answered");
 
-showPage(5);
+showChapter("mabarChapter");
 
 }
 
@@ -686,6 +924,11 @@ document
 .getElementById("mapImage")
 .src =
 "map"+currentMap+".jpeg";
+
+document
+.getElementById("mapCounter")
+.innerHTML =
+"Map Memory "+currentMap+" / 6";
 
 }
 
@@ -711,13 +954,18 @@ document
 .src =
 "map"+currentMap+".jpeg";
 
-}
+document
+.getElementById("mapCounter")
+.innerHTML =
+"Map Memory "+currentMap+" / 6";
 
 }
 
-function goRealLife(){
+}
 
-showPage(6);
+function openRealLife(){
+
+showChapter("realLifeChapter");
 
 }
 
@@ -731,6 +979,11 @@ document
 .getElementById("realImage")
 .src =
 "ketemu"+currentReal+".jpeg";
+
+document
+.getElementById("realCounter")
+.innerHTML =
+"Real Life Memory "+currentReal+" / 7";
 
 }
 
@@ -756,49 +1009,64 @@ document
 .src =
 "ketemu"+currentReal+".jpeg";
 
-}
+document
+.getElementById("realCounter")
+.innerHTML =
+"Real Life Memory "+currentReal+" / 7";
 
 }
 
-function goWhatsapp(){
+}
 
-showPage(7);
+function openWhatsapp(){
+
+showChapter("whatsappChapter");
 
 }
 
-function goBirthday(){
+function openBirthday(){
 
-showPage(8);
+showChapter("birthdayChapter");
 
 }
 
 function openLetter(){
 
-showPage(9);
+showChapter("letterChapter");
 
 }
 
-function showLetter(){
+function openEnvelope(){
+
+document
+.getElementById("envelope")
+.innerHTML = "📨";
+
+setTimeout(()=>{
 
 document
 .getElementById("hearts")
 .style.display =
 "block";
 
+},500);
+
 setTimeout(()=>{
 
 document
-.getElementById("letterContent")
+.getElementById("paper")
 .style.display =
 "block";
 
-},1000);
+},1500);
 
 }
 
 function showEnding(){
 
-showPage(10);
+achievement("🏆 Story Completed");
+
+showChapter("endingChapter");
 
 }
 
@@ -808,4 +1076,4 @@ showPage(10);
 
 </html>
 
-</div>
+</section>
