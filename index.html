@@ -1,8 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>The Story That Started In A Forest</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -10,20 +14,20 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Segoe UI,sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
 body{
 background:linear-gradient(180deg,#87CEEB,#BFEFFF,#EAF9FF);
-overflow-x:hidden;
+overflow:hidden;
 }
 
 .page{
 display:none;
-min-height:100vh;
-padding:30px;
+height:100vh;
 justify-content:center;
 align-items:center;
+padding:20px;
 }
 
 .active{
@@ -31,29 +35,41 @@ display:flex;
 }
 
 .card{
-background:white;
+background:rgba(255,255,255,.95);
+width:90%;
 max-width:900px;
-width:100%;
-padding:30px;
+padding:35px;
 border-radius:25px;
-box-shadow:0 10px 30px rgba(0,0,0,.15);
 text-align:center;
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+animation:fadeIn .8s ease;
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(20px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
 }
 
 h1{
 color:#3B82F6;
-margin-bottom:20px;
+margin-bottom:15px;
 }
 
 h2{
+color:#60A5FA;
 margin-bottom:15px;
-color:#2563EB;
 }
 
 p{
-font-size:18px;
 line-height:1.8;
-margin-bottom:20px;
+color:#444;
+margin-bottom:15px;
 }
 
 button{
@@ -63,26 +79,52 @@ border:none;
 padding:12px 25px;
 border-radius:12px;
 cursor:pointer;
-font-size:17px;
-margin:5px;
+font-size:16px;
+transition:.3s;
 }
 
 button:hover{
-background:#3B82F6;
+transform:scale(1.05);
 }
 
 img{
 width:100%;
 max-width:500px;
-border-radius:15px;
-margin:15px auto;
+border-radius:18px;
+margin:20px auto;
 display:block;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.progress{
+width:100%;
+height:20px;
+background:#dbeafe;
+border-radius:30px;
+overflow:hidden;
+margin:20px 0;
+}
+
+.bar{
+height:100%;
+width:0%;
+background:#60A5FA;
 }
 
 .achievement{
 background:#DBEAFE;
 padding:15px;
 border-radius:15px;
+margin-top:20px;
+font-weight:600;
+}
+
+#intro{
+display:none;
+}
+
+#startBtn{
+display:none;
 margin-top:20px;
 }
 
@@ -91,62 +133,65 @@ margin-top:20px;
 
 <body>
 
-<!-- PROLOGUE -->
+<!-- LOADING -->
 
 <div class="page active" id="page1">
 
 <div class="card">
 
-<h1>🎮 THE STORY THAT STARTED IN A FOREST</h1>
+<h1>🎮 Birthday Event 2026</h1>
 
-<p>
+<p id="loadingText">
 Loading Memories...
 </p>
 
-<p>
-██████████ 100%
-</p>
+<div class="progress">
+<div class="bar" id="bar"></div>
+</div>
 
-<p>
-Welcome Back, Player.
-</p>
+<p id="percent">0%</p>
 
-<button onclick="showPage(2)">
-▶️ START
+<div id="intro">
+
+<h2>🏆 Memories Loaded</h2>
+
+<p id="typing"></p>
+
+<button id="startBtn" onclick="showPage(2)">
+▶️ Start Story
 </button>
 
 </div>
 
 </div>
 
-<!-- CHAPTER 1 -->
+</div>
+
+<!-- FOREST -->
 
 <div class="page" id="page2">
 
 <div class="card">
 
-<h1>🌲 CHAPTER 1</h1>
+<h1>🌲 Chapter 1</h1>
 
 <h2>The Forest</h2>
 
 <img src="forest1.jpeg">
 
 <p>
-
 Setiap cerita punya awal.
-
-Dan untuk cerita ini...
-
-aku memilih memulainya di sini.
-
 </p>
 
 <p>
+Dan untuk cerita ini...
+aku memilih memulainya di sini.
+</p>
 
+<p>
 Mungkin ini bukan foto pertama kita.
-
-Tapi ini adalah salah satu tempat yang paling mengingatkanku pada awal semuanya.
-
+Tapi setiap kali melihat tempat ini,
+aku selalu teringat bagaimana semuanya dimulai.
 </p>
 
 <div class="achievement">
@@ -175,22 +220,23 @@ Continue ➜
 
 <div class="card">
 
-<h1>🎧 CHAPTER 2</h1>
+<h1>🎧 Chapter 2</h1>
 
 <h2>Discord Era</h2>
 
 <img src="chatdc.png">
 
 <p>
-
 Awalnya cuma teman main.
+</p>
 
+<p>
 Lalu jadi teman ngobrol.
+</p>
 
+<p>
 Dan perlahan...
-
 game bukan lagi satu-satunya alasan untuk berbicara.
-
 </p>
 
 <button onclick="showPage(4)">
@@ -207,16 +253,12 @@ Continue ➜
 
 <div class="card">
 
-<h1>📞 MINI GAME</h1>
+<h1>📞 Incoming Call</h1>
 
-<h2>Incoming Call...</h2>
+<h2>Mini Game</h2>
 
 <p>
-
 Pilihan ini akan menentukan timeline.
-
-(Ya nggak juga sih 🤣)
-
 </p>
 
 <button onclick="answerCall()">
@@ -242,6 +284,58 @@ p.classList.remove('active');
 });
 
 document.getElementById('page'+page).classList.add('active');
+
+}
+
+let progress=0;
+
+let load=setInterval(()=>{
+
+progress++;
+
+document.getElementById("bar").style.width=
+progress+"%";
+
+document.getElementById("percent").innerHTML=
+progress+"%";
+
+if(progress>=100){
+
+clearInterval(load);
+
+document.getElementById("intro").style.display=
+"block";
+
+typeWriter();
+
+}
+
+},35);
+
+function typeWriter(){
+
+let text=
+"Every story has a beginning. This one started in a forest.";
+
+let i=0;
+
+let type=setInterval(()=>{
+
+document.getElementById("typing").innerHTML+=
+text.charAt(i);
+
+i++;
+
+if(i>=text.length){
+
+clearInterval(type);
+
+document.getElementById("startBtn").style.display=
+"inline-block";
+
+}
+
+},40);
 
 }
 
