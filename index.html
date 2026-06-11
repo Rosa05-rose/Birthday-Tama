@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,166 +19,323 @@ box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
 
-body{
-background:linear-gradient(180deg,#87CEEB,#BFEFFF,#EAF9FF);
-overflow-y:auto;
-overflow-x:hidden;
+html{
+scroll-behavior:smooth;
 }
 
-.page{
-display:none;
+body{
+background:linear-gradient(
+180deg,
+#87CEEB,
+#BFEFFF,
+#EAF9FF
+);
+overflow-x:hidden;
+color:#333;
+}
+
+.cloud{
+position:fixed;
+font-size:70px;
+opacity:.5;
+z-index:-1;
+animation:cloudMove 40s linear infinite;
+}
+
+.cloud2{
+top:120px;
+animation-duration:55s;
+}
+
+@keyframes cloudMove{
+
+from{
+transform:translateX(-300px);
+}
+
+to{
+transform:translateX(1800px);
+}
+
+}
+
+section{
+
 min-height:100vh;
+
+display:flex;
 justify-content:center;
 align-items:center;
-padding:40px 20px;
-}
 
-.active{
-display:flex;
+padding:50px;
+
 }
 
 .card{
-background:rgba(255,255,255,.95);
-width:90%;
-max-width:900px;
-padding:35px;
-border-radius:25px;
-text-align:center;
-box-shadow:0 10px 30px rgba(0,0,0,.15);
-animation:fadeIn .8s ease;
-}
 
-@keyframes fadeIn{
-from{
-opacity:0;
-transform:translateY(20px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+background:white;
+
+width:90%;
+max-width:1000px;
+
+padding:40px;
+
+border-radius:25px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+text-align:center;
+
 }
 
 h1{
-color:#3B82F6;
-margin-bottom:15px;
+
+font-size:3rem;
+color:#2563EB;
+
+margin-bottom:20px;
+
 }
 
 h2{
+
 color:#60A5FA;
-margin-bottom:15px;
+margin-bottom:20px;
+
 }
 
 p{
+
 line-height:1.8;
-color:#444;
+font-size:18px;
+
 margin-bottom:15px;
-}
 
-button{
-background:#60A5FA;
-color:white;
-border:none;
-padding:12px 25px;
-border-radius:12px;
-cursor:pointer;
-font-size:16px;
-transition:.3s;
-}
-
-button:hover{
-transform:scale(1.05);
 }
 
 img{
+
 width:100%;
-max-width:500px;
-border-radius:18px;
-margin:20px auto;
+max-width:550px;
+
+border-radius:20px;
+
+margin:25px auto;
+
 display:block;
+
 box-shadow:0 10px 25px rgba(0,0,0,.15);
+
 }
 
-.progress{
-width:100%;
-height:20px;
-background:#dbeafe;
-border-radius:30px;
-overflow:hidden;
-margin:20px 0;
-}
+button{
 
-.bar{
-height:100%;
-width:0%;
+padding:12px 25px;
+
+border:none;
+
+border-radius:12px;
+
 background:#60A5FA;
+
+color:white;
+
+font-size:16px;
+
+cursor:pointer;
+
 }
 
-.achievement{
-background:#DBEAFE;
-padding:15px;
+.loading-bar{
+
+width:100%;
+height:25px;
+
+background:#dbeafe;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:20px;
+
+}
+
+.loading{
+
+height:100%;
+
+width:0%;
+
+background:#3B82F6;
+
+}
+
+.fade{
+
+opacity:0;
+
+transform:translateY(40px);
+
+transition:1s;
+
+}
+
+.fade.show{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+.ring{
+
+font-size:100px;
+
+animation:ring .8s infinite;
+
+}
+
+@keyframes ring{
+
+0%{transform:rotate(-15deg);}
+25%{transform:rotate(15deg);}
+50%{transform:rotate(-15deg);}
+75%{transform:rotate(15deg);}
+100%{transform:rotate(0deg);}
+
+}
+
+.caller{
+
+font-size:32px;
+
+font-weight:bold;
+
+color:#2563EB;
+
+animation:pulse 1s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{opacity:1;}
+50%{opacity:.5;}
+100%{opacity:1;}
+
+}
+
+.answer{
+
+background:#22c55e;
+
+animation:blink 1s infinite;
+
+}
+
+.decline{
+
+background:#ef4444;
+
+animation:blink 1s infinite;
+
+}
+
+@keyframes blink{
+
+0%{opacity:1;}
+50%{opacity:.6;}
+100%{opacity:1;}
+
+}
+
+.popup{
+
+position:fixed;
+
+top:20px;
+right:-400px;
+
+background:white;
+
+padding:15px 20px;
+
 border-radius:15px;
-margin-top:20px;
-font-weight:600;
+
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+
+transition:.5s;
+
+z-index:999;
+
 }
 
-#intro{
-display:none;
-}
+.popup.show{
 
-#startBtn{
-display:none;
-margin-top:20px;
+right:20px;
+
 }
 
 </style>
+
 </head>
 
 <body>
 
-<!-- LOADING -->
+<div class="cloud">☁️</div>
+<div class="cloud cloud2">☁️</div>
 
-<div class="page active" id="page1">
+<audio id="bgmusic" loop>
+<source src="lucky1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="popup" id="popup">
+🏆 Achievement Unlocked!
+</div>
+
+<section>
 
 <div class="card">
 
-<h1>🎮 Birthday Event 2026</h1>
+<h1>🎮 Birthday Event</h1>
 
-<p id="loadingText">
-Loading Memories...
-</p>
+<h2>For Pratama</h2>
 
-<div class="progress">
-<div class="bar" id="bar"></div>
+<p>Loading Memories...</p>
+
+<div class="loading-bar">
+<div class="loading" id="loading"></div>
 </div>
 
 <p id="percent">0%</p>
 
-<div id="intro">
+<br>
 
-<h2>🏆 Memories Loaded</h2>
+<button id="musicBtn" style="display:none;">
+🎵 Play Music
+</button>
 
-<p id="typing"></p>
+<br><br>
 
-<button id="startBtn" onclick="showPage(2)">
+<button id="startBtn" style="display:none;">
 ▶️ Start Story
 </button>
 
 </div>
 
-</div>
+</section>
 
-</div>
+  <!-- FOREST -->
 
-<!-- FOREST -->
+<section>
 
-<div class="page" id="page2">
-
-<div class="card">
+<div class="card fade">
 
 <h1>🌲 Chapter 1</h1>
 
-<h2>The Forest</h2>
+<h2>The Story Started In A Forest</h2>
 
 <img src="forest1.jpeg">
 
@@ -195,31 +354,19 @@ Tapi setiap kali melihat tempat ini,
 aku selalu teringat bagaimana semuanya dimulai.
 </p>
 
-<div class="achievement">
-
-🏆 Achievement Unlocked
-
-<br><br>
-
-First Encounter
-
-</div>
-
-<br>
-
-<button onclick="showPage(3)">
+<button onclick="achievement('🏆 First Encounter Unlocked')">
 Continue ➜
 </button>
 
 </div>
 
-</div>
+</section>
 
 <!-- DISCORD -->
 
-<div class="page" id="page3">
+<section>
 
-<div class="card">
+<div class="card fade">
 
 <h1>🎧 Chapter 2</h1>
 
@@ -240,121 +387,338 @@ Dan perlahan...
 game bukan lagi satu-satunya alasan untuk berbicara.
 </p>
 
-<button onclick="showPage(4)">
+<button onclick="achievement('🎧 Discord Era Unlocked')">
 Continue ➜
 </button>
 
 </div>
 
-</div>
+</section>
 
-<!-- MINI GAME -->
+<!-- INCOMING CALL -->
 
-<div class="page" id="page4">
+<section>
 
-<div class="card">
+<div class="card fade">
 
 <h1>📞 Incoming Call</h1>
 
-<h2>Mini Game</h2>
+<div class="caller">
+
+Pratama Calling...
+
+</div>
+
+<br>
+
+<div class="ring">
+
+☎️
+
+</div>
 
 <p>
-Pilihan ini akan menentukan timeline.
+Incoming Discord Call...
 </p>
 
-<button onclick="answerCall()">
-✅ Answer
+<br>
+
+<button class="answer">
+
+🟢 Answer
+
 </button>
 
-<button onclick="ignoreCall()">
-❌ Ignore
-</button>
+<button class="decline">
 
-<p id="result"></p>
+🔴 Ignore
+
+</button>
 
 </div>
 
+</section>
+
+  <!-- MABAR ARC -->
+
+<section>
+
+<div class="card fade">
+
+<h1>🎮 Chapter 3</h1>
+
+<h2>Mabar Arc</h2>
+
+<p>
+Ternyata cerita ini tidak berhenti di satu map.
+</p>
+
+<p>
+Ada banyak tempat yang dijelajahi.
+Banyak momen random.
+Dan banyak kenangan yang terkumpul tanpa sadar.
+</p>
+
+<img src="map1.jpeg">
+<img src="map2.jpeg">
+<img src="map3.jpeg">
+<img src="map4.jpeg">
+<img src="map5.jpeg">
+<img src="map6.jpeg">
+
+<button onclick="achievement('🎮 Mabar Arc Completed')">
+Continue ➜
+</button>
+
 </div>
+
+</section>
+
+<!-- REAL LIFE UPDATE -->
+
+<section>
+
+<div class="card fade">
+
+<h1>🚶 Chapter 4</h1>
+
+<h2>Real Life Update</h2>
+
+<p>
+⚠️ MAJOR STORY EVENT
+</p>
+
+<p>
+Dan akhirnya...
+cerita yang awalnya hanya ada di layar,
+mulai hadir di dunia nyata.
+</p>
+
+<img src="ketemu1.jpeg">
+<img src="ketemu2.jpeg">
+<img src="ketemu3.jpeg">
+<img src="ketemu4.jpeg">
+<img src="ketemu5.jpeg">
+<img src="ketemu6.jpeg">
+<img src="ketemu7.jpeg">
+
+<button onclick="achievement('🚶 Real Life Unlocked')">
+Continue ➜
+</button>
+
+</div>
+
+</section>
+
+<!-- WHATSAPP -->
+
+<section>
+
+<div class="card fade">
+
+<h1>📱 Chapter 5</h1>
+
+<h2>WhatsApp Unlocked</h2>
+
+<img src="chatwa.jpeg">
+
+<p>
+Dari game.
+Dari Discord.
+Sampai akhirnya bertukar WhatsApp.
+</p>
+
+<p>
+Sebuah langkah kecil,
+yang ternyata membawa banyak cerita berikutnya.
+</p>
+
+<button onclick="achievement('📱 WhatsApp Unlocked')">
+Continue ➜
+</button>
+
+</div>
+
+</section>
+
+  <!-- BIRTHDAY EVENT -->
+
+<section>
+
+<div class="card fade">
+
+<h1>🎂 Chapter 6</h1>
+
+<h2>Birthday Event</h2>
+
+<p>
+🎉 Congratulations!
+</p>
+
+<p>
+Setelah melewati semua chapter,
+akhirnya kita sampai di hari spesial ini.
+</p>
+
+<p>
+Level Up!
+</p>
+
+<h1>+1 AGE 🎂</h1>
+
+<button onclick="achievement('🎂 Birthday Event Completed')">
+Continue ➜
+</button>
+
+</div>
+
+</section>
+
+<!-- LETTER -->
+
+<section>
+
+<div class="card fade">
+
+<h1>💌 Final Letter</h1>
+
+<h2>Open The Letter</h2>
+
+<p style="font-size:80px;">
+💌
+</p>
+
+<p>
+
+[ISI SURAT NANTI DI SINI]
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ENDING -->
+
+<section>
+
+<div class="card fade">
+
+<h1>🏆 Story Completed</h1>
+
+<h2>100% Completion Rate</h2>
+
+<p>
+From Forest...
+</p>
+
+<p>
+To Discord...
+</p>
+
+<p>
+To Real Life...
+</p>
+
+<p>
+And finally,
+Birthday Event.
+</p>
+
+<h2>
+Thank You For Being Part Of This Story 💙
+</h2>
+
+</div>
+
+</section>
 
 <script>
 
-function showPage(page){
+let progress = 0;
 
-document.querySelectorAll('.page').forEach(p=>{
-p.classList.remove('active');
-});
-
-document.getElementById('page'+page).classList.add('active');
-
-}
-
-let progress=0;
-
-let load=setInterval(()=>{
+let load = setInterval(()=>{
 
 progress++;
 
-document.getElementById("bar").style.width=
-progress+"%";
+document.getElementById("loading").style.width =
+progress + "%";
 
-document.getElementById("percent").innerHTML=
-progress+"%";
+document.getElementById("percent").innerHTML =
+progress + "%";
 
-if(progress>=100){
+if(progress >= 100){
 
 clearInterval(load);
 
-document.getElementById("intro").style.display=
-"block";
+document.getElementById("musicBtn").style.display =
+"inline-block";
 
-typeWriter();
-
-}
-
-},35);
-
-function typeWriter(){
-
-let text=
-"Every story has a beginning. This one started in a forest.";
-
-let i=0;
-
-let type=setInterval(()=>{
-
-document.getElementById("typing").innerHTML+=
-text.charAt(i);
-
-i++;
-
-if(i>=text.length){
-
-clearInterval(type);
-
-document.getElementById("startBtn").style.display=
+document.getElementById("startBtn").style.display =
 "inline-block";
 
 }
 
 },40);
 
+document.getElementById("musicBtn")
+.addEventListener("click",()=>{
+
+document.getElementById("bgmusic").play();
+
+});
+
+document.getElementById("startBtn")
+.addEventListener("click",()=>{
+
+window.scrollTo({
+top:window.innerHeight,
+behavior:"smooth"
+});
+
+});
+
+function achievement(text){
+
+let popup =
+document.getElementById("popup");
+
+popup.innerHTML = text;
+
+popup.classList.add("show");
+
+setTimeout(()=>{
+
+popup.classList.remove("show");
+
+},2500);
+
 }
 
-function answerCall(){
+const observer =
+new IntersectionObserver(entries=>{
 
-document.getElementById("result").innerHTML=
-"<br><b>Good Choice 💙</b><br><br>Discord Era Unlocked!";
+entries.forEach(entry=>{
 
-}
+if(entry.isIntersecting){
 
-function ignoreCall(){
-
-document.getElementById("result").innerHTML=
-"<br><b>Are You Sure? 🤨</b><br><br>This choice may affect the timeline.";
+entry.target.classList.add("show");
 
 }
+
+});
+
+});
+
+document.querySelectorAll(".fade")
+.forEach(el=>{
+
+observer.observe(el);
+
+});
 
 </script>
 
 </body>
+
 </html>
