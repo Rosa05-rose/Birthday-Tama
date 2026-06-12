@@ -235,11 +235,17 @@ margin:25px 0;
 
 }
 
-.avatar{
+.avatar-video{
 
 width:180px;
 
-height:auto;
+height:250px;
+
+object-fit:cover;
+
+border-radius:20px;
+
+box-shadow:0 10px 20px rgba(0,0,0,.15);
 
 }
 
@@ -316,9 +322,13 @@ transform:translateY(0);
 
 <div class="avatar-container">
 
-<img src="avatar-cowo.mp4" class="avatar wave">
+<video class="avatar-video" autoplay muted loop playsinline>
+<source src="avatar-cowo.mp4" type="video/mp4">
+</video>
 
-<img src="avatar-cewe.mp4" class="avatar wave">
+<video class="avatar-video" autoplay muted loop playsinline>
+<source src="avatar-cewe.mp4" type="video/mp4">
+</video>
 
 </div>
 
