@@ -223,6 +223,55 @@ right:20px;
 animation:fadeIn 1s ease;
 
 }
+  .avatar-container{
+
+display:flex;
+
+justify-content:center;
+
+gap:50px;
+
+margin:25px 0;
+
+}
+
+.avatar{
+
+width:180px;
+
+height:auto;
+
+}
+
+.wave{
+
+animation:wave 1.5s infinite;
+
+}
+
+@keyframes wave{
+
+0%{
+transform:rotate(0deg);
+}
+
+25%{
+transform:rotate(5deg);
+}
+
+50%{
+transform:rotate(0deg);
+}
+
+75%{
+transform:rotate(-5deg);
+}
+
+100%{
+transform:rotate(0deg);
+}
+
+}
 
 @keyframes fadeIn{
 
@@ -264,6 +313,14 @@ transform:translateY(0);
 <h1>🎮 Birthday Event</h1>
 
 <h2>For Pratama</h2>
+
+<div class="avatar-container">
+
+<img src="avatar-cowo.png" class="avatar wave">
+
+<img src="avatar-cewe.png" class="avatar wave">
+
+</div>
 
 <p>Loading Memories...</p>
 
