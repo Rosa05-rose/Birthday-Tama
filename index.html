@@ -306,9 +306,6 @@ transform:translateY(0);
 <source src="lucky1.mp3" type="audio/mpeg">
 </audio>
 
-<div class="popup" id="popup">
-🏆 Achievement Unlocked!
-</div>
 
 <!-- LOADING -->
 
@@ -316,9 +313,7 @@ transform:translateY(0);
 
 <div class="card">
 
-<h1>🎮 Birthday Event</h1>
-
-<h2>For Pratama</h2>
+<h1>For Pratama 🤍</h1>
 
 <div class="avatar-container">
 
@@ -332,22 +327,29 @@ transform:translateY(0);
 
 </div>
 
-<p>Loading Memories...</p>
+<p>
+Happy Birthday 🤍
+</p>
 
-<div class="loading-bar">
+<p>
+I made something for you.
+</p>
 
-<div class="loading" id="loading"></div>
-
-</div>
-
-<p id="percent">0%</p>
+<p>
+Because some stories are too special
+to be told only once.
+</p>
 
 <br>
 
-<button id="musicBtn" style="display:none;">
-
+<button id="musicBtn">
 🎵 Play Music
+</button>
 
+<br><br>
+
+<button id="startBtn">
+Begin Our Story →
 </button>
 
 <br><br>
@@ -719,9 +721,9 @@ Continue ➜
 
 <div class="card fade">
 
-<h1>🏆 Achievement Unlocked</h1>
+<h1>🎂 Happy Birthday</h1>
 
-<h2>Birthday Event</h2>
+<h2>Pratama 🤍</h2>
 
 <div id="cake"
 style="
@@ -738,14 +740,15 @@ animation:candleMove 1s infinite alternate;
 </p>
 
 <p>
-Hari ini levelmu bertambah satu.
+Terima kasih untuk semua cerita
+yang sudah kita lalui.
 </p>
 
-<h1>
-
-+1 AGE ✨
-
-</h1>
+<p>
+Dan semoga,
+masih ada banyak cerita lain
+yang menunggu di depan.
+</p>
 
 <br>
 
@@ -832,41 +835,23 @@ Continue ➜
 
 <div class="card fade">
 
-<h1>🏆 STORY COMPLETED</h1>
-
-<h2>Completion Rate 100%</h2>
-
-<div style="font-size:90px;">
-
-🎊 🎉 🎊
-
-</div>
+<h1>
+Thank You 🤍
+</h1>
 
 <p>
-
-From Forest...
-
-To Discord...
-
-To Mabar...
-
-To Real Life...
-
-To Today.
-
+For being part of my story.
 </p>
 
-<h2>
-
-Thank You For Being Part Of This Story 💙
-
-</h2>
+<p>
+And this story continues...
+</p>
 
 <br>
 
 <button onclick="location.reload()">
 
-🔄 Replay Story
+Read Again ✨
 
 </button>
 
@@ -891,35 +876,6 @@ transform:rotate(3deg);
 </style>
 
 <script>
-
-let progress = 0;
-
-let currentMap = 1;
-let currentReal = 1;
-
-let load = setInterval(()=>{
-
-progress++;
-
-document.getElementById("loading").style.width =
-progress + "%";
-
-document.getElementById("percent").innerHTML =
-progress + "%";
-
-if(progress >= 100){
-
-clearInterval(load);
-
-document.getElementById("musicBtn").style.display =
-"inline-block";
-
-document.getElementById("startBtn").style.display =
-"inline-block";
-
-}
-
-},40);
 
 document
 .getElementById("musicBtn")
@@ -960,26 +916,7 @@ behavior:"smooth"
 
 }
 
-function achievement(text){
-
-let popup =
-document.getElementById("popup");
-
-popup.innerHTML = text;
-
-popup.classList.add("show");
-
-setTimeout(()=>{
-
-popup.classList.remove("show");
-
-},2500);
-
-}
-
 function openDiscord(){
-
-achievement("🏆 First Encounter");
 
 showChapter("discordChapter");
 
@@ -987,15 +924,11 @@ showChapter("discordChapter");
 
 function openCall(){
 
-achievement("🎧 Discord Era");
-
 showChapter("callChapter");
 
 }
 
 function answerCall(){
-
-achievement("📞 Call Answered");
 
 showChapter("mabarChapter");
 
@@ -1158,8 +1091,6 @@ document
 }
 
 function showEnding(){
-
-achievement("🏆 Story Completed");
 
 showChapter("endingChapter");
 
